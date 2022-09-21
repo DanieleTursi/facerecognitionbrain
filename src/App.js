@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, Component } from 'react';
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import Navigation from './components/Navigation/Navigation';
@@ -21,13 +21,28 @@ const particlesLoaded = useCallback(async (container) => {
     await console.log(container);
 }, []);
 
+class App extends Component {
+    constructor(){
+        super();
+        this.state={
+            input:'',
+        }
+    }
+  
+}
+
+onInputChange = (event) => {
+    this.setState({input: event.target.value});
+  }
+  
   return (
     <div className="App">
+
       
      <Navigation />
      <Logo />
      <Rank />
-     <ImageLinkForm/>
+     <ImageLinkForm onInputChange={this.onInputChange}/>
      <Particles className='zIndex'
             id="tsparticles"
             init={particlesInit}
@@ -35,7 +50,7 @@ const particlesLoaded = useCallback(async (container) => {
             options={{
                 background: {
                     color: {
-                        value: "#0d47a1",
+                        value: "linear-gradient(89deg, #FF5EDF 0%, #04C8DE 100%);",
                     },
                 },
                 fpsLimit: 120,
@@ -82,7 +97,7 @@ const particlesLoaded = useCallback(async (container) => {
                             default: "bounce",
                         },
                         random: false,
-                        speed: 2,
+                        speed: 1,
                         straight: false,
                     },
                     number: {
@@ -96,7 +111,7 @@ const particlesLoaded = useCallback(async (container) => {
                         value: 0.5,
                     },
                     shape: {
-                        type: "circle",
+                        type: "square",
                     },
                     size: {
                         value: { min: 1, max: 5 },
