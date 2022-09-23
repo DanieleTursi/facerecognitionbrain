@@ -31,6 +31,7 @@ class App extends Component {
         super();
         this.state={
             input:'',
+            imaUrl:'',
         }
     }
     
@@ -158,7 +159,7 @@ render(){
                 detectRetina: true,
             }}
         />
-     { <FaceRecognition />}
+     { <FaceRecognition imageUrl={this.state.imageUrl}/>}
     </div>
   );
   }
