@@ -14,7 +14,7 @@ const FaceRecognition=({imageUrl})=>{
     }, []);
 
     return(
-        <div>
+        <div className="center ma">
             <Particles className='zIndex'
             id="tsparticles"
             init={particlesInit}
@@ -92,7 +92,9 @@ const FaceRecognition=({imageUrl})=>{
                 detectRetina: true,
             }}
         />
-           <img alt='' src={imageUrl}/>
+        <div className="absolute mt2 ">
+           <img alt='' src={imageUrl} width='500px' height='auto'/>
+           </div>
         </div>
     )
 }
