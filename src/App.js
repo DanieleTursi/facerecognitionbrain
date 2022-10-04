@@ -6,6 +6,7 @@ import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import Signin from './components/Signin/Signin';
+import Register from './components/Register/Register';
 import './index.css';
 import './App.css';
 import { render } from '@testing-library/react';
@@ -90,10 +91,10 @@ const app = new Clarifai.App({
 render(){
   return (
     <div className="App">
-     <Navigation onRouteChange={this.onRouteChange}/>
-     { this.state.route === 'signin'
-      ? <Signin onRouteChange={this.onRouteChange} />
-      :<div>
+     
+     { this.state.route === 'home'
+      ?<div>
+        <Navigation onRouteChange={this.onRouteChange}/>
         <Logo />
         <Rank />
         <ImageLinkForm 
@@ -102,6 +103,11 @@ render(){
         />
         <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
        </div>
+       : (
+        this.state.route=== 'signin'
+           ? <Signin onRouteChange={this.onRouteChange} />
+           : <Register onRouteChange={this.onRouteChange} />
+           )
      }
      </div>
   );
