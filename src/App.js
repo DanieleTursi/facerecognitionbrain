@@ -23,7 +23,8 @@ const app = new Clarifai.App({
             input:'',
             imageUrl:'',
             box:{},
-            route:'signin'
+            route:'signin',
+            isSignedIn: false
         }
     }
 
@@ -85,16 +86,21 @@ const app = new Clarifai.App({
       }
 
       onRouteChange = (route) =>{
+        if(route === 'signout'){
+          this.setState({isSignedIn:false})
+        } else if (route === 'home')
+        {
+          this.setState({isSignedIn:true})
+        }
         this.setState({route:route});
       }
 
 render(){
   return (
     <div className="App">
-     
+      <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange}/>
      { this.state.route === 'home'
       ?<div>
-        <Navigation onRouteChange={this.onRouteChange}/>
         <Logo />
         <Rank />
         <ImageLinkForm 
