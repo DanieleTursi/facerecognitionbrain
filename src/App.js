@@ -65,7 +65,6 @@ const app = new Clarifai.App({
             Clarifai.FACE_DETECT_MODEL,
             this.state.input)
           .then(response => {
-            console.log('hi', response)
             // if (response) {
             //   fetch('http://localhost:3000/image', {
             //     method: 'put',
@@ -96,10 +95,11 @@ const app = new Clarifai.App({
       }
 
 render(){
+   const {isSignedIn, imageUrl, route, box } = this.state
   return (
     <div className="App">
-      <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange}/>
-     { this.state.route === 'home'
+      <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
+     { route === 'home'
       ?<div>
         <Logo />
         <Rank />
@@ -107,7 +107,7 @@ render(){
         onInputChange={this.onInputChange}
         onButtonSubmit={this.onButtonSubmit}
         />
-        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+        <FaceRecognition box={box} imageUrl={imageUrl}/>
        </div>
        : (
         this.state.route=== 'signin'
